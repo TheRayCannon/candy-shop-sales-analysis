@@ -24,9 +24,25 @@ function addTotalSalesToItems(sales, items) {
 }
 
 
+function addTotalValueToItems(sales, items) {
+    return items.map(n => {
+        const itemId = n.id
+        const item = getItemById(items, itemId)
+        const quantity = getTotalItemSales(sales, itemId)
+        const totalValue = parseFloat((n.price * quantity).toFixed(2))
+
+        return {
+            ...item,
+            quantity: quantity,
+            totalValue: totalValue
+        }
+    })
+}
+
+
 module.exports = {
     // Uncomment these functions as you write them
     getTotalItemSales,
     addTotalSalesToItems,
-    //addTotalValueToItems
+    addTotalValueToItems
 }
